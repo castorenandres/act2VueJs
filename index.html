@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        
+        <title>Turismo en Mexico</title>
+    </head>
+
+    <body>
+        <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color: rgba(89, 255, 47, 0.774);">
+            <a class="navbar-brand" href="#">Mexico turista</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item active">
+                      <a class="nav-link" href="https://lanzateyviaja.com/mexico/lugares-turisticos">Más información <span class="sr-only">(current)</span></a>
+                  </li>
+                </ul>
+              </div>
+        </nav>
+
+        <div class="container">
+            <div id = "app">
+                <h1 style="text-align: center;">{{ message }} </h1>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="container" id = "userInput">
+            <input v-model="userText" placeholder="edit me">
+            <p>Mi lugar favorito es: {{ userText }}</p>
+        </div>
+
+        <div>
+            <div class="card-group" id="Pasatiempo">
+                <div class="card" style="width: 18rem;" v-for = "pasatiempo in pasatiempos">
+                    <h2>{{pasatiempo.text}} </h2>
+                    <img :src="pasatiempo.imagen" class="card-img-top">
+                    <button type="button" class="btn btn-secondary" v-on:click="pasatiempo.isHidden = !pasatiempo.isHidden">Descripcion</button>
+                    <p v-if="!pasatiempo.isHidden"> {{pasatiempo.descp}} </p>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {message: 'Lugares turisticos'}
+
+            })
+
+            var textoUsuario = new Vue ({
+                el: '#userInput',
+                data: {
+                    userText: ""
+                }
+            })
+
+            var ejercicio = new Vue({
+                el: '#Pasatiempo',
+                data: {
+                    pasatiempos: [
+                    { text: 'Chichén Itzá', isHidden: true, descp: "Ubicado al norte de la Península de Yucatán, podrás encontrar Chichén Itzá, la ciudad mexicana más famosa del mundo y la segunda zona arqueológica más visitada. Se encuentra a una hora en carro de la ciudad de Mérida y es el lugar perfecto para conocer la cultura e historia azteca. Además, fue nombrado Patrimonio Cultural de la Humanidad en 1988.", imagen: "https://mymodernmet.com/wp/wp-content/uploads/2020/02/Chichen-Itza-3-768x511.jpg"},
+                    { text: 'Xochimilco', isHidden: true, descp: "Llamado “campo de flores”, Xochimilco es un conjunto de canales en Náhuatl que existen desde la época prehispánica y que ahora se han convertido en un atractivo turístico que sin dudas debes visitar para pasear en sus trajineras.", imagen: "https://www.eluniversal.com.mx/sites/default/files/2018/03/23/xochimilco_trajineras_recorridos_reservacion_enlinea1.jpg"},
+                    { text: 'Xcaret', isHidden: true, descp: "Xcaret es un parque natural en Playa del Carmen donde disfrutarás de ríos subterráneos y de la riqueza natural y cultural del pueblo azteca. Diviértete en más de 50 atractivos enmarcados por los paisajes espectaculares de este Majestuoso Paraíso de Mexico.", imagen: "https://gd-consejosdecancun.sfo2.cdn.digitaloceanspaces.com/2018/07/xcaret-cancun.jpg"}
+                ]
+                }
+            })
+        </script>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    </body>
+</html>
